@@ -34,7 +34,13 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/new", (req, res) => {
-    alert("Test");
+    title = req.body.title;
+    story = req.body.story;
+    //pic = req.files.pic;
+    console.log("Title: "+title);
+    console.log("Story: "+story);
+    //console.log("Pic: "+pic);
+    //bookList.push(makeBook(title, story, pic));
 });
 
 // Capture any other uncoded routes and 404 them
