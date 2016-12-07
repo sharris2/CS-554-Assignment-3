@@ -13,10 +13,10 @@ app.use("/public/js/node_modules", nodeModuleStatic);
 app.use("/public", generalStatic);
 app.use("/app", appStatic);
 
-app.use(bodyParser.json());
+/*app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
-})); 
+})); */
 
 configRoutes(app);
 

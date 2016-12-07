@@ -1,4 +1,5 @@
 const express = require('express');
+var multer  =   require('multer');
 const router = express.Router();
 const bookList = [];
 
@@ -33,15 +34,33 @@ router.get("/:id", (req, res) => {
     }
 });
 
-router.post("/new", (req, res) => {
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'server/public/images')
+  },
+  filename: function (req, file, cb) {
+    var patt1=/\.[0-9a-z]+$/i;
+    var ext = file.originalname.match(patt1);
+    cb(null, file.fieldname + '-' + Date.now()+ext)
+  }
+})
+ 
+var upload = multer({ storage: storage })
+
+router.post("/new", upload.single('userPhoto'), function (req, res, next) {
+  // req.file is the `userPhoto` file 
+  // req.body will hold the text fields, if there were any 
     title = req.body.title;
     story = req.body.story;
-    //pic = req.files.pic;
+
     console.log("Title: "+title);
     console.log("Story: "+story);
-    //console.log("Pic: "+pic);
-    //bookList.push(makeBook(title, story, pic));
+    console.log("Pic: "+req.file.filename);
+    bookList.push(makeBook(title, story, "../public/images/"+req.file.filename));
+    res.redirect('/');
 });
+
+
 
 // Capture any other uncoded routes and 404 them
 router.use("*", (req, res) => {
