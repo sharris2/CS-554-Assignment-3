@@ -33,8 +33,8 @@ router.get("/:id", (req, res) => {
     }
 });
 
-
 router.post("/", (req, res) => {
+    alert("Test");
 });
 
 // Capture any other uncoded routes and 404 them
