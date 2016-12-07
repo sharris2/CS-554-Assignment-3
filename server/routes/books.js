@@ -2,20 +2,20 @@ const express = require('express');
 const router = express.Router();
 const bookList = [];
 
-function makeBook(title, author, releaseYear) {
+function makeBook(title, description, picture) {
     return {
         title: title,
-        author: author,
-        releaseYear: releaseYear,
+        description: description,
+        picture: picture,
         id: bookList.length
     };
 }
 
-bookList.push(makeBook("Catcher in the Rye", "J. D. Salinger", 1951));
-bookList.push(makeBook("1984", "George Orwell", 1949));
-bookList.push(makeBook("Psion", "Joan D. Vinge", 1982));
-bookList.push(makeBook("American Gods", "Neil Gaiman", 2001));
-bookList.push(makeBook("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2001));
+bookList.push(makeBook("Stubbed my toe", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("Hit my head", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("Overlsept", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("Missed homework", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("Tripped", "STORY OF MY LIFE!!!", ""));
 
 router.get("/", (req, res) => {
     res.json(bookList);
