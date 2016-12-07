@@ -11,7 +11,7 @@ function makeBook(title, description, picture) {
     };
 }
 
-bookList.push(makeBook("Stubbed my toe", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("Stubbed my toe", "STORY OF MY LIFE!!", "../public/images/stubbed-toe.jpg"));
 bookList.push(makeBook("Hit my head", "STORY OF MY LIFE!!", ""));
 bookList.push(makeBook("Overlsept", "STORY OF MY LIFE!!", ""));
 bookList.push(makeBook("Missed homework", "STORY OF MY LIFE!!", ""));
