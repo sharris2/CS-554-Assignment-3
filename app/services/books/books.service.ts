@@ -30,7 +30,7 @@ export class BookService {
     };
 
     async getBookById(id: number) {
-        return this.http.get(`${this._bookUrl}/${id}`)
+        return this.http.get(`${this._bookUrl}/detail/${id}`)
             .map(res => {
                 return res.json() || undefined;
             })

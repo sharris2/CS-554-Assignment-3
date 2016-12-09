@@ -67,7 +67,7 @@ router.get("/:id", (req, res) => {
     //let book = bookList.filter(x => x.id === id)[0];
 })
 
-/**router.get("/:id", (req, res) => {
+router.get("/detail/:id", (req, res) => {
     const id = parseInt(req.params.id);
 
     let book = bookList.filter(x => x.id === id)[0];
@@ -77,7 +77,7 @@ router.get("/:id", (req, res) => {
     } else {
         res.json(book);
     }
-});*/
+});
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -100,8 +100,13 @@ router.post("/new", upload.single('userPhoto'), function (req, res, next) {
 
     console.log("Title: "+title);
     console.log("Story: "+story);
-    console.log("Pic: "+req.file.filename);
-    bookList.push(makeBook(title, story, "../public/images/"+req.file.filename));
+    if(req.file !== undefined) {
+        console.log("Pic: "+req.file.filename);
+        bookList.push(makeBook(title, story, "../public/images/"+req.file.filename));
+    }
+    else {
+        bookList.push(makeBook(title, story, ""));
+    }
     res.redirect('/');
 });
 
