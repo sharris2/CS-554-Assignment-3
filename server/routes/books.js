@@ -1,5 +1,6 @@
 const express = require('express');
 var multer  =   require('multer');
+var sanitizeHtml = require('sanitize-html');
 const router = express.Router();
 const bookList = [];
 
@@ -61,7 +62,7 @@ router.get("/:id", (req, res) => {
         }
 
         pagelist = bookList.slice(beg_num, bookList.length - end_num);
-        res.json(pagelist);
+        res.json(pagelist.reverse());
     }
 
     //let book = bookList.filter(x => x.id === id)[0];
@@ -93,10 +94,22 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 router.post("/new", upload.single('userPhoto'), function (req, res, next) {
-  // req.file is the `userPhoto` file 
-  // req.body will hold the text fields, if there were any 
     title = req.body.title;
     story = req.body.story;
+
+    title = sanitizeHtml(title, {
+        allowedTags: [ 'b', 'i', 'em', 'strong', 'a' ],
+        allowedAttributes: {
+            'a': [ 'href' ]
+        }
+    });
+
+    story = sanitizeHtml(story, {
+        allowedTags: [ 'b', 'i', 'em', 'strong', 'a' ],
+        allowedAttributes: {
+            'a': [ 'href' ]
+        }
+    });
 
     console.log("Title: "+title);
     console.log("Story: "+story);

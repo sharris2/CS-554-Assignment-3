@@ -44,12 +44,13 @@
     "concurrently": "^3.1.0",
     "core-js": "^2.4.1",
     "lodash": "^4.16.4",
-    "rimraf": "^2.5.4",
-    "tslint": "^4.0.0-dev.1",
-    "typescript": "^2.1.0-dev.20161107",
-    "should": "~7.1.0",
     "mocha": "~2.3.3",
-    "supertest": "~1.1.0"
+    "rimraf": "^2.5.4",
+    "sanitize-html": "^1.13.0",
+    "should": "~7.1.0",
+    "supertest": "~1.1.0",
+    "tslint": "^4.0.0-dev.1",
+    "typescript": "^2.1.0-dev.20161107"
   },
   "repository": {}
 }
