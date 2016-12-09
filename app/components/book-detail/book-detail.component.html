@@ -2,7 +2,7 @@
     <h2>{{book.title}}</h2>
     <p>{{book.description}}</p>
     <!-- onerror="this.style.display='none' -->
-    <img src="{{book.picture}}" height="500" width="500">
-    <aside>In our database, it is book #{{book.id}}</aside>
-    <a routerLink="/archive">Back to book list</a>
+    <img src="{{book.picture}}" height="250" width="250" onerror="this.style.display='none'">
+    <aside>In our database, it is post #{{book.id}}</aside>
+    <a routerLink="/archive/0">Back to post list</a>
 </article>
