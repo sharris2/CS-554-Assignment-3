@@ -21,6 +21,14 @@ export class BookService {
             .toPromise();
     };
 
+    async getPageBooks(id: number) {
+        return this.http.get(`${this._bookUrl}/${id}`)
+            .map(res => {
+                return res.json() || [];
+            })
+            .toPromise();
+    };
+
     async getBookById(id: number) {
         return this.http.get(`${this._bookUrl}/${id}`)
             .map(res => {

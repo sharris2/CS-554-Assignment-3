@@ -19,10 +19,10 @@ import { BookService } from "./services/books/books.service";
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: 'archive',
+        redirectTo: 'archive/0',
         pathMatch: 'full'
       },
-      { path: 'archive', component: BookListComponent },
+      { path: 'archive/:id', component: BookListComponent },
       { path: 'posts/new', component: BookFormComponent },
       { path: 'posts/:id', component: BookDetailComponent }
     ])

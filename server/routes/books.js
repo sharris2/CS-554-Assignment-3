@@ -17,12 +17,57 @@ bookList.push(makeBook("Hit my head", "STORY OF MY LIFE!!", ""));
 bookList.push(makeBook("Overlsept", "STORY OF MY LIFE!!", ""));
 bookList.push(makeBook("Missed homework", "STORY OF MY LIFE!!", ""));
 bookList.push(makeBook("Tripped", "STORY OF MY LIFE!!!", ""));
+bookList.push(makeBook("test20", "STORY OF MY LIFE!!", "../public/images/stubbed-toe.jpg"));
+bookList.push(makeBook("test19", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test18", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test17", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test16", "STORY OF MY LIFE!!!", ""));
+bookList.push(makeBook("test15", "STORY OF MY LIFE!!", "../public/images/stubbed-toe.jpg"));
+bookList.push(makeBook("test14", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test13", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test12", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test11", "STORY OF MY LIFE!!!", ""));
+bookList.push(makeBook("test10", "STORY OF MY LIFE!!", "../public/images/stubbed-toe.jpg"));
+bookList.push(makeBook("test9", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test8", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test7", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test6", "STORY OF MY LIFE!!!", ""));
+bookList.push(makeBook("test5", "STORY OF MY LIFE!!", "../public/images/stubbed-toe.jpg"));
+bookList.push(makeBook("test4", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test3", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test2", "STORY OF MY LIFE!!", ""));
+bookList.push(makeBook("test1", "STORY OF MY LIFE!!!", ""));
 
 router.get("/", (req, res) => {
     res.json(bookList);
 });
 
 router.get("/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    let pagelist = [];
+    num = 20 + (id * 20);
+    end_num = 20 * id;
+
+    if(bookList.length < 20) {
+        res.json(bookList);
+    }
+    else if((num - bookList.length) > 20) {
+        res.json(pagelist);
+    }
+    else {
+        beg_num = bookList.length - num;
+        if(beg_num < 0) {
+            beg_num = 0;
+        }
+
+        pagelist = bookList.slice(beg_num, bookList.length - end_num);
+        res.json(pagelist);
+    }
+
+    //let book = bookList.filter(x => x.id === id)[0];
+})
+
+/**router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id);
 
     let book = bookList.filter(x => x.id === id)[0];
@@ -32,7 +77,7 @@ router.get("/:id", (req, res) => {
     } else {
         res.json(book);
     }
-});
+});*/
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
